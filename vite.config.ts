@@ -13,4 +13,8 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    outDir: 'dist'
+  },
+  base: '/', // atau '/' untuk root domain, sesuaikan kalau pakai subpath
 })
