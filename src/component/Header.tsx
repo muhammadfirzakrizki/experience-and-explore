@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom"
+
 export default function Header() {
     return (
         <header className="w-full bg-white shadow-sm">
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 py-3 gap-2 md:gap-0">
 
-                {/* Logo & Brand (Kiri) */}
+               <Link to="/" className="flex items-center">
+                {/* Logo dan Nama Villa (Kiri) */}
                 <div className="flex items-center space-x-3">
                     <img
                         src="/villapuncak.png"
@@ -19,6 +22,7 @@ export default function Header() {
                         </span>
                     </div>
                 </div>
+                </Link>
 
                 {/* Info Cepat (Kanan) */}
                 <div className="flex hidden md:flex-row md:block items-center md:space-x-6 space-y-1 md:space-y-0 text-xs md:text-sm font-medium text-gray-700 mt-2 md:mt-0">

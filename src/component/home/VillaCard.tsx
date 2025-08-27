@@ -1,4 +1,4 @@
-import { villas } from "@/data/villas"
+import { villas } from "@/data/villas-copy"
 import { useCategoryStore } from "@/store/useCategoryStore"
 import { useFilterStore } from "@/store/useFilterStore"
 import { Star } from "lucide-react"

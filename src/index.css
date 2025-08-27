@@ -1,6 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
+/* Swiper core */
+@import "swiper/css";
 
+/* Jika pakai navigasi, pagination, scrollbar */
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+@import "swiper/css/scrollbar";
+@import "swiper/css/effect-coverflow";
 
 @theme {
   --font-sans: "Poppins", sans-serif;
