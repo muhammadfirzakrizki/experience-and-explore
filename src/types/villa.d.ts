@@ -8,4 +8,5 @@ export type Villa = {
     price: string
     bookingLink: string
     detailLink: string
+    gallery: Array<string>
 }

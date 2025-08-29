@@ -6,6 +6,7 @@ import { MapPin, Users, Star, Wifi, Home, Music, TreeDeciduous, WavesLadder } fr
 import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectCoverflow } from "swiper/modules"
 import type { JSX } from "react"
+import { SectionTitle } from "@/component/SectionTitle"
 
 export default function VillaDetail() {
   const { id } = useParams()
@@ -21,7 +22,7 @@ export default function VillaDetail() {
     )
   }
 
-  const galleryImages = [villa.image, "/villa1.jpg", "/villa2.jpg", "/villa1.jpg", "/villa2.jpg"]
+  const galleryImages = villa.gallery || [villa.image]
 
   // Map fasilitas ke ikon
 
@@ -102,9 +103,8 @@ export default function VillaDetail() {
 
       {/* Galeri Foto */}
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <h3 className="text-3xl font-bold text-green-700 text-center mb-6">
-          Galeri Villa
-        </h3>
+        {/* Galeri Villa */}
+        <SectionTitle title="Galeri Villa" icon="📸" />
 
         <Swiper
           effect={'coverflow'}
@@ -128,15 +128,59 @@ export default function VillaDetail() {
               className="rounded-2xl overflow-hidden shadow-xl"
               style={{ width: "300px", height: "400px" }}
             >
-              <img
-                src={img}
-                alt={`Villa ${idx + 1}`}
-                className="w-full h-full object-cover"
-              />
+              <div className="w-full h-full group relative">
+                <img
+                  src={img}
+                  alt={`Villa ${idx + 1}`}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
+                />
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition"></div>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
+
+      {/* Villa Lainnya */}
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        {/* Galeri Villa */}
+        <SectionTitle title="Villa Lainnya" icon="🏡" />
+
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {villas
+            .filter(v => v.id !== villa.id)
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 3)
+            .map(v => (
+              <a
+                key={v.id}
+                href={`/villa/${v.id}`}
+                className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 hover:scale-[1.02] transition duration-500"
+              >
+                {/* Gambar + Overlay */}
+                <div className="relative h-56">
+                  <img
+                    src={v.image}
+                    alt={v.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-80"></div>
+                </div>
+
+                {/* Info */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <h4 className="text-xl font-bold">{v.name}</h4>
+                  <p className="text-sm line-clamp-2 opacity-90">{v.description}</p>
+                  <p className="mt-2 font-semibold text-green-300">{v.price}</p>
+                  <button className="mt-3 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg shadow-md text-sm font-medium transition">
+                    Lihat Detail
+                  </button>
+                </div>
+              </a>
+            ))}
+        </div>
+      </div>
+
 
     </section>
   )
