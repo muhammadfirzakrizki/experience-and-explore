@@ -14,7 +14,15 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "moment", "react-datepicker"],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 600, // ubah limit jika ingin hilangkan warning
   },
   base: '/', // atau '/' untuk root domain, sesuaikan kalau pakai subpath
 })

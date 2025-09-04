@@ -103,8 +103,7 @@ export default function VillaDetail() {
 
       {/* Galeri Foto */}
       <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Galeri Villa */}
-        <SectionTitle title="Galeri Villa" icon="📸" />
+        <SectionTitle title="Galeri Villa"/>
 
         <Swiper
           effect={'coverflow'}
@@ -143,8 +142,8 @@ export default function VillaDetail() {
 
       {/* Villa Lainnya */}
       <div className="max-w-7xl mx-auto px-6 py-16">
-        {/* Galeri Villa */}
-        <SectionTitle title="Villa Lainnya" icon="🏡" />
+
+        <SectionTitle title="Villa Lainnya" />
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
           {villas
