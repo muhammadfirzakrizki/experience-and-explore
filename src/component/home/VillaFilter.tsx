@@ -6,17 +6,16 @@ import moment from "moment";
 import { villas as villaData } from "@/data/villas";
 import { bookings } from "@/data/bookings";
 
-
 export default function VillaFilter() {
   const [date, setDate] = useState<Date>(new Date());
   const [duration, setDuration] = useState<number>(1);
 
+  // Hitung start dan end date
+  const startDate = moment(date);
+  const endDate = moment(date).add(duration, "days"); // tambahkan durasi langsung
+
   // Filter villa sesuai booking
   const filteredVillas = villaData.filter((villa) => {
-    if (!date) return true;
-
-    const startDate = moment(date);
-    const endDate = moment(date).add(duration - 1, "days");
     const villaBookings = bookings.filter((b) => b.villaId === villa.id);
 
     return villaBookings.every((b) => {
@@ -81,21 +80,18 @@ export default function VillaFilter() {
         </div>
 
         {/* Summary / Pemberitahuan */}
-        {date && (
-          <div className="mt-2 p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded-lg text-sm md:text-base">
-            <p>
-              <span className="font-medium">Tanggal:</span>{" "}
-              {moment(date).format("DD/MM/YYYY")} -{" "}
-              {moment(date).add(duration - 1, "days").format("DD/MM/YYYY")}
-            </p>
-            <p>
-              <span className="font-medium">Durasi:</span> {duration} hari
-            </p>
-            <p>
-              <span className="font-medium">Villa Tersedia:</span> {filteredVillas.length} dari {villaData.length}
-            </p>
-          </div>
-        )}
+        <div className="mt-2 p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded-lg text-sm md:text-base">
+          <p>
+            <span className="font-medium">Tanggal:</span>{" "}
+            {startDate.format("DD/MM/YYYY")} - {endDate.format("DD/MM/YYYY")}
+          </p>
+          <p>
+            <span className="font-medium">Durasi:</span> {duration} hari
+          </p>
+          <p>
+            <span className="font-medium">Villa Tersedia:</span> {filteredVillas.length} dari {villaData.length}
+          </p>
+        </div>
       </div>
 
       {/* Villa Listing */}
